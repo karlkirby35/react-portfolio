@@ -1,18 +1,48 @@
+import { useEffect, useState } from "react";
+import "./css/navbar.css";
 
+export default function Navbar() {
+  const sections = ["intro", "projects", "contact"];
+  const [activeSection, setActiveSection] = useState("intro");
 
-export default function Navbar({ activeSection }){
-    return (
-        <nav className="fixed left-8 top-1/2 -translate-y-1/2 z-10 hidden lg:block">
-          <div className="flex flex-col gap-4">
-            {['intro', 'projects', 'contact'].map(section => (
-                <button
-                    key={section}
-                    onClick={() => document.getElementById(section).scrollIntoView({ behavior: 'smooth' })}
-                    className={`w-2 h-8 rounded-full cursor-pointer
-                      ${activeSection === section ? 'bg-foreground' : 'bg-muted-foreground/30 hover:bg-muted-foreground/60'} `}
-                ><span className="text-sm ml-4" >{section}</span></button>
-            ))}
-          </div>
-        </nav>
-    );
+  useEffect(() => {
+    const handleScroll = () => {
+      let current = "intro";
+      for (let section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const top = element.getBoundingClientRect().top;
+          if (top <= window.innerHeight / 2) {
+            current = section;
+          }
+        }
+      }
+      setActiveSection(current);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); 
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  return (
+    <nav className="side-navbar">
+      {sections.map((section) => (
+        <button
+          key={section}
+          onClick={() =>
+            document
+              .getElementById(section)
+              .scrollIntoView({ behavior: "smooth" })
+          }
+          className={`nav-button ${
+            activeSection === section ? "active" : ""
+          }`}
+        >
+          {section}
+        </button>
+      ))}
+    </nav>
+  );
 }

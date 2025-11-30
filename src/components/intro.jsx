@@ -1,3 +1,6 @@
+import React from "react";
+import "./css/intro.css";
+
 export default function Intro(){
     return(
         <header id="intro" className="min-h-screen flex items-center">
@@ -6,14 +9,14 @@ export default function Intro(){
               <div className="space-y-3 sm:space-y-2">
                 <div className="text-sm text-muted-foreground tracking-wider">PORTFOLIO / 2025</div>
                 <h1 className="text-5xl sm:text-6xl lg:text-7xl font-light tracking-tight">
-                  Mohammed <br />
-                  <span className="text-muted-foreground">Che</span>
+                  Karl <br />
+                  <span className="text-muted-foreground">Kirby</span>
                 </h1>
               </div>
 
               <div className="space-y-6 max-w-md">
                 <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed">
-                  Frontend Developer crafting digital experiences at the intersection of
+                  Front end developer with 
                   <span className="text-foreground"> design</span>,<span className="text-foreground"> technology</span>, and
                   <span className="text-foreground"> user experience</span>.
                 </p>
